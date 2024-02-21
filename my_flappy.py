@@ -18,6 +18,56 @@ PIPE_GAP = 150
 
 wing = 'assets/audio/wing.wav'
 hit = 'assets/audio/hit.wav'
+pygame.mixer.init()
+
+class Bird(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.images =  [pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha(),
+                        pygame.image.load('assets/sprites/bluebird-midflap.png').convert_alpha(),
+                        pygame.image.load('assets/sprites/bluebird-downflap.png').convert_alpha()]
+        
+        self.speed = SPEED #speed_y car speed_x constant
+        self.current_image = 0
+        self.image = pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha()
+
+        self.rect = self.image.get_rect()
+        #self.rect[0] = SCREEN_WIDHT / 6 # Pourquoi ?
+        #self.rect[1] = SCREEN_HEIGHT / 2
+
+
+    def update(self): #update for next image
+        self.current_image = (self.current_image + 1) % 3 
+        self.image = self.images[self.current_image]
+        self.speed += GRAVITY
+        #UPDATE HEIGHT
+        self.rect[1] += self.speed
+
+    def bump(self): #press K-SPACE
+        self.speed = -SPEED
+    
+    def begin(self):       # Why not update() ?
+        self.current_image = (self.current_image + 1) % 3 
+        self.image = self.images[self.current_image]
+
+
+class Pipe(pygame.sprite.Sprite):
+
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = pygame.image.load('assets/sprites/pipe-green.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image,(PIPE_WIDHT,PIPE_HEIGHT))
+
+
+
+
+
+
+
+
+
 pygame.init()
 
 screen = pygame.display.set_mode((SCREEN_WIDHT, SCREEN_HEIGHT))
