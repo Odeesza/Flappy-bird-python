@@ -70,13 +70,14 @@ class Pipe(pygame.sprite.Sprite):
 
         self.rect = self.image.get_rect()
         self.rect[0] = xpos
-
+        print("de base:",self.rect)
         if inverted:
             self.image = pygame.transform.flip(self.image, False, True)
             self.rect[1] = - (self.rect[3] - ysize)
+            print("inverted :",self.rect)
         else:
             self.rect[1] = SCREEN_HEIGHT - ysize
-        print(self.rect)
+            print("droit", self.rect)
 
         self.mask = pygame.mask.from_surface(self.image)
 
