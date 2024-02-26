@@ -32,7 +32,7 @@ class Bird(pygame.sprite.Sprite):
         self.current_image = 0
         self.image = pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha()
 
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect() # crée un rectangle englobant l'image, gardant se propriétés(couleur,forme)
         #self.rect[0] = SCREEN_WIDHT / 6 # Pourquoi ?
         #self.rect[1] = SCREEN_HEIGHT / 2
 
@@ -54,12 +54,22 @@ class Bird(pygame.sprite.Sprite):
 
 class Pipe(pygame.sprite.Sprite):
 
-    def __init__(self):
+    def __init__(self, inverted, xpos, ysize):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load('assets/sprites/pipe-green.png').convert_alpha()
         self.image = pygame.transform.scale(self.image,(PIPE_WIDHT,PIPE_HEIGHT))
 
+        self.rect = self.image.get_rect()
+        self.rect[0] = xpos
+        if inverted:
+            self.image = pygame.transform.flip(self.image, False, True)
+            #self.rect[1] = 
+        else:
+            #self.rect[1]
+
+    def update(self):
+        self.rect[0] -= GAME_SPEED
 
 
 

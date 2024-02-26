@@ -1,2 +1,1 @@
-
-    bird.update()
+15
