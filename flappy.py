@@ -79,7 +79,7 @@ class Pipe(pygame.sprite.Sprite):
             self.rect[1] = SCREEN_HEIGHT- ysize 
             print("droit", self.rect)
 
-        self.mask = pygame.mask.from_surface(self.image)
+        #self.mask = pygame.mask.from_surface(self.image)
 
 
     def update(self):
@@ -94,7 +94,7 @@ class Ground(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/sprites/base.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (GROUND_WIDHT, GROUND_HEIGHT))
 
-        self.mask = pygame.mask.from_surface(self.image)
+        #self.mask = pygame.mask.from_surface(self.image)
 
         self.rect = self.image.get_rect()
         self.rect[0] = xpos

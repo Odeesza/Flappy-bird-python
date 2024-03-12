@@ -64,12 +64,28 @@ class Pipe(pygame.sprite.Sprite):
         self.rect[0] = xpos
         if inverted:
             self.image = pygame.transform.flip(self.image, False, True)
-            #self.rect[1] = 
+            self.rect[1] = - (self.rect[3] - ysize)
+            print("inverted :",self.rect)
         else:
-            #self.rect[1]
+            self.rect[1] = SCREEN_HEIGHT - ysize
+            print("droit", self.rect)
 
+    
     def update(self):
         self.rect[0] -= GAME_SPEED
+
+
+class Ground(pygame.sprite.Sprite):
+        
+    def __init__(self, xpos):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load('assets/sprites/base.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image,(PIPE_WIDHT,PIPE_HEIGHT))
+
+        self.rect = self.image.get_rect()
+        self.rect[0] = xpos
+        
+
 
 
 
